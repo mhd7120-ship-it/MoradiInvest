@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>ارزش واقعی درآمدت | Moradi Invest</title>
+<style>
+  @font-face{font-family:'Vazirmatn';font-weight:400;font-display:block;src:url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/fonts/webfonts/Vazirmatn-Regular.woff2') format('woff2');}
+  @font-face{font-family:'Vazirmatn';font-weight:500;font-display:block;src:url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/fonts/webfonts/Vazirmatn-Medium.woff2') format('woff2');}
+  @font-face{font-family:'Vazirmatn';font-weight:600;font-display:block;src:url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/fonts/webfonts/Vazirmatn-SemiBold.woff2') format('woff2');}
+  @font-face{font-family:'Vazirmatn';font-weight:700;font-display:block;src:url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/fonts/webfonts/Vazirmatn-Bold.woff2') format('woff2');}
+  @font-face{font-family:'Vazirmatn';font-weight:800;font-display:block;src:url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/fonts/webfonts/Vazirmatn-ExtraBold.woff2') format('woff2');}
+  @font-face{font-family:'Vazirmatn';font-weight:900;font-display:block;src:url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/fonts/webfonts/Vazirmatn-Black.woff2') format('woff2');}
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --navy:#1A2B4A;--navy-deep:#0F1D33;--blue:#2563EB;
+    --gold:#B8932F;--gold-deep:#8B6F1F;
+    --danger:#D93A3A;--danger-bg:#FCE9E9;
+    --text:#1E293B;--muted:#64748B;--line:#E2E8F0;--bg:#EEF1F4;
+    --shadow-soft:0 10px 25px -5px rgba(15,29,51,.07),0 8px 10px -6px rgba(15,29,51,.04);
+    --shadow-float:0 20px 40px -10px rgba(15,29,51,.14);
+  }
+  html,body{-webkit-text-size-adjust:100%}
+  body{
+    font-family:'Vazirmatn',Tahoma,system-ui,sans-serif;
+    background:var(--bg);
+    background-image:
+      radial-gradient(circle at 15% 50%,rgba(37,99,235,.05),transparent 50%),
+      radial-gradient(circle at 85% 30%,rgba(184,147,47,.07),transparent 50%);
+    background-attachment:fixed;color:var(--text);
+    min-height:100vh;padding:22px 14px 44px;line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:460px;margin:0 auto}
+  .brand{text-align:center;margin-bottom:18px}
+  .brand .badge{
+    display:inline-flex;align-items:center;justify-content:center;
+    font-size:10px;font-weight:800;color:var(--navy);
+    padding:5px 16px;background:rgba(255,255,255,.85);
+    border:1px solid var(--line);border-radius:100px;margin-bottom:10px;box-shadow:var(--shadow-soft);
+    gap:8px;
+  }
+  .brand .badge::before{content:'';width:5px;height:5px;background:var(--gold);border-radius:50%;box-shadow:0 0 8px var(--gold);flex-shrink:0}
+  .brand .badge .b-en{letter-spacing:2px;direction:ltr;font-weight:800}
+  .brand .badge .b-fa{letter-spacing:0;font-weight:800}
+  .brand .badge .b-dot{opacity:.4}
+  .brand h1{font-size:25px;font-weight:900;color:var(--navy);line-height:1.35;letter-spacing:-.5px}
+  .brand h1 .hl{color:var(--gold)}
+  .brand .sub{display:block;margin-top:5px;font-size:12.5px;font-weight:600;color:var(--muted)}
+
+  .panel{
+    background:#fff;border:1px solid rgba(255,255,255,.6);border-radius:24px;
+    padding:22px 18px 18px;box-shadow:var(--shadow-float);position:relative;overflow:hidden;
+  }
+  .panel::before{
+    content:'';position:absolute;top:0;right:0;left:0;height:4px;
+    background:linear-gradient(90deg,var(--navy) 0%,var(--blue) 50%,var(--gold) 100%);
+  }
+  .field{margin-bottom:16px}
+  .field label{display:block;font-size:13px;font-weight:700;color:var(--text);margin-bottom:8px}
+  .shell{position:relative}
+  .shell input{
+    width:100%;height:56px;background:#F1F4F8;border:2px solid transparent;border-radius:14px;
+    padding:0 72px 0 14px;font-family:inherit;font-size:20px;font-weight:900;color:var(--navy);
+    outline:none;transition:.25s;direction:rtl;text-align:right;
+    box-shadow:inset 0 2px 4px rgba(0,0,0,.03);
+  }
+  .shell input::placeholder{color:#94A3B8;font-weight:500;font-size:14px}
+  .shell input:focus{background:#fff;border-color:var(--blue);box-shadow:0 0 0 4px rgba(37,99,235,.14)}
+  .shell input.error{border-color:var(--danger);box-shadow:0 0 0 4px rgba(217,58,58,.14)}
+  .shell .unit{
+    position:absolute;left:12px;top:50%;transform:translateY(-50%);
+    font-size:11px;font-weight:700;color:var(--muted);background:#fff;border-radius:9px;
+    padding:5px 10px;pointer-events:none;box-shadow:0 2px 4px rgba(0,0,0,.05);
+  }
+  .live{margin-top:6px;font-size:12px;font-weight:800;color:var(--blue);min-height:17px}
+  .btn-calc{
+    width:100%;height:56px;border:none;border-radius:14px;font-family:inherit;
+    font-size:16px;font-weight:800;color:#fff;cursor:pointer;
+    background:linear-gradient(135deg,#22355A 0%,var(--navy-deep) 100%);
+    box-shadow:0 12px 24px -10px rgba(15,29,51,.5);transition:.3s;
+  }
+  .btn-calc:active{transform:scale(.98)}
+  .privacy{margin-top:12px;text-align:center;font-size:11px;font-weight:600;color:var(--muted);opacity:.85}
+
+  #result{display:none;margin-top:20px}
+  #result.show{display:block;animation:fadeUp .5s cubic-bezier(.16,1,.3,1) both}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+  .card-viewport{
+    position:relative;width:100%;max-width:460px;margin:0 auto 14px;
+    border-radius:26px;overflow:hidden;background:#F6F3EC;
+    box-shadow:var(--shadow-float);aspect-ratio:9/16;
+  }
+  #cardCanvas{width:100%;height:100%;display:block}
+  .card-loading{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    background:#F6F3EC;color:var(--muted);font-size:14px;font-weight:700;
+  }
+  .card-loading.hide{display:none}
+
+  .actions{display:flex;flex-direction:column;gap:10px;max-width:460px;margin:0 auto 14px}
+  .btn-share{
+    display:flex;align-items:center;justify-content:center;gap:10px;width:100%;height:56px;
+    border:none;border-radius:14px;font-family:inherit;font-size:16px;font-weight:900;color:#fff;
+    cursor:pointer;background:linear-gradient(135deg,#22355A 0%,var(--navy-deep) 100%);
+    box-shadow:0 16px 32px -12px rgba(15,29,51,.55);transition:.3s;
+  }
+  .btn-share:active{transform:scale(.985)}
+  .btn-share:disabled{opacity:.7;cursor:wait}
+
+  .preview{
+    max-width:460px;margin:0 auto 14px;background:#fff;border:1px solid var(--line);
+    border-radius:20px;padding:14px;text-align:center;box-shadow:var(--shadow-float);
+  }
+  .preview[hidden]{display:none}
+  .preview h3{font-size:15.5px;font-weight:900;color:var(--navy);margin-bottom:10px}
+  .preview img{width:100%;display:block;border-radius:14px;border:1px solid var(--line)}
+  .preview .hint{
+    margin-top:12px;font-size:12px;font-weight:800;color:var(--danger);line-height:1.8;
+    background:var(--danger-bg);padding:10px;border-radius:11px;
+  }
+
+  .cta{
+    max-width:460px;margin:14px auto 0;background:#fff;border:1px solid rgba(255,255,255,.6);
+    border-radius:20px;padding:18px;text-align:center;box-shadow:var(--shadow-float);
+  }
+  .cta h3{font-size:16.5px;font-weight:900;color:var(--navy);margin-bottom:5px}
+  .cta p{font-size:12.5px;line-height:1.9;color:var(--muted);margin-bottom:14px}
+  .cta a{
+    display:flex;align-items:center;justify-content:center;width:100%;height:50px;
+    background:#F1F4F8;border:2px solid var(--line);border-radius:13px;
+    color:var(--navy);font-size:15px;font-weight:900;text-decoration:none;transition:.3s;
+  }
+  .cta a:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+
+  .toast{
+    position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(160%);
+    background:var(--navy);color:#fff;font-size:13px;font-weight:800;padding:14px 26px;
+    border-radius:100px;box-shadow:0 20px 40px -10px rgba(0,0,0,.45);
+    transition:transform .4s cubic-bezier(.16,1,.3,1);z-index:999;white-space:nowrap;
+  }
+  .toast.show{transform:translateX(-50%) translateY(0)}
+  .toast.error{background:var(--danger)}
+
+  @media(max-width:380px){
+    body{padding:16px 10px 36px}
+    .panel{padding:18px 14px 14px}
+    .shell input{font-size:18px;height:52px}
+    .brand h1{font-size:22px}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="brand">
+    <div class="badge">
+      <span class="b-en">MORADI INVEST</span>
+      <span class="b-dot">·</span>
+      <span class="b-fa">مرادی اینوست</span>
+    </div>
+    <h1>ارزش واقعی درآمدت<br>چقدر <span class="hl">دود شده؟</span></h1>
+    <span class="sub">دو تا عدد وارد کن و حقیقت تلخ رو ببین...</span>
+  </div>
+
+  <div class="panel">
+    <div class="field">
+      <label for="i1">درآمد ماهانه‌ات در سال ۱۴۰۳ چقد بود؟</label>
+      <div class="shell">
+        <input id="i1" type="text" inputmode="numeric" placeholder="حدودی هم کافیه" autocomplete="off">
+        <span class="unit">تومان</span>
+      </div>
+      <div class="live" id="l1"></div>
+    </div>
+    <div class="field">
+      <label for="i2">درآمد ماهانه‌ات الان (مهر ۱۴۰۵) چقدره؟</label>
+      <div class="shell">
+        <input id="i2" type="text" inputmode="numeric" placeholder="حدودی هم کافیه" autocomplete="off">
+        <span class="unit">تومان</span>
+      </div>
+      <div class="live" id="l2"></div>
+    </div>
+    <button class="btn-calc" id="calc">محاسبه افت ارزش درآمد</button>
+    <div class="privacy">همه‌چیز فقط روی گوشی خودت حساب می‌شه؛ هیچ عددی ذخیره نمی‌شه.</div>
+  </div>
+
+  <div id="result">
+    <div class="card-viewport">
+      <canvas id="cardCanvas"></canvas>
+      <div class="card-loading" id="cardLoading">در حال آماده‌سازی کارت...</div>
+    </div>
+
+    <div class="actions">
+      <button class="btn-share" id="shareBtn">
+        <span>استوری کن و ببین بقیه چی میگن؟</span>
+      </button>
+    </div>
+
+    <div class="preview" id="preview" hidden>
+      <h3>عکس آماده شد!</h3>
+      <img id="previewImg" alt="کارت نتیجه">
+      <div class="hint">
+        ⚠️ <b>دستت رو روی عکس بالا نگه دار (Tap &amp; Hold) و Save Image رو بزن</b> تا توی گالریت ذخیره بشه.
+      </div>
+    </div>
+
+    <div class="cta">
+      <h3>این فقط شروعه! 🚀</h3>
+      <p>ماشین‌حساب‌های بعدی تو راهه تا چشم‌هاتو به واقعیت مالی باز کنه. برای ترفندهای عقب نموندن از تورم پیج رو دنبال کن.</p>
+      <a href="https://instagram.com/moradiinvest" target="_blank" rel="noopener">رفتن به پیج مرادی اینوست (MoradiInvest) →</a>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+'use strict';
+
+var GOLD_1403=4000000, GOLD_1405=25600000;
+
+var C={
+  navy:'#1A2B4A', navyDeep:'#0F1D33', blue:'#2563EB',
+  gold:'#B8932F', goldDeep:'#8B6F1F', goldLight:'#F5E9C8',
+  muted:'#64748B',
+  danger:'#D93A3A', dangerBg:'#FCE9E9',
+  success:'#1A936F', successBg:'#E6F4EE',
+  white:'#FFFFFF',
+  border:'rgba(26,43,74,0.10)', borderFaint:'rgba(26,43,74,0.07)'
+};
+
+var FA='۰۱۲۳۴۵۶۷۸۹', AR='٠١٢٣٤٥٦٧٨٩';
+var IN_APP=/(Instagram|FBAN|FBAV|FB_IAB|Line\/|WhatsApp|MicroMessenger|Twitter)/i.test(navigator.userAgent);
+var $=function(id){return document.getElementById(id)};
+
+function toEn(s){return String(s).replace(/[۰-۹]/g,function(d){return FA.indexOf(d)}).replace(/[٠-٩]/g,function(d){return AR.indexOf(d)})}
+function toFa(s){return String(s).replace(/[0-9]/g,function(d){return FA[+d]})}
+function withCommas(n){return String(n).replace(/\B(?=(\d{3})+(?!\d))/g,',')}
+function faNum(n,dec){dec=dec||0;if(!isFinite(n))n=0;return Number(n).toLocaleString('fa-IR',{minimumFractionDigits:dec,maximumFractionDigits:dec});}
+function effectiveToman(raw){var n=parseInt(raw||'0',10);if(!n||n<=0)return 0;return n<1000?n*1000000:n;}
+function humanMoney(v){
+  if(!v)return'';
+  if(v>=1000000000){var b=v/1000000000;return faNum(b,Number.isInteger(b)?0:1)+' میلیارد تومان'}
+  if(v>=1000000){var m=v/1000000;return faNum(m,Number.isInteger(m)?0:1)+' میلیون تومان'}
+  return faNum(v,0)+' تومان';
+}
+function formatTarget(v){
+  var m=v/1000000;
+  if(m>=1000){var b=m/1000;return{num:faNum(b,b<10?1:0),unit:'میلیارد تومان'}}
+  return{num:faNum(m,m<10?1:0),unit:'میلیون تومان'};
+}
+
+var fontPromise=null;
+function ensureFonts(){
+  if(fontPromise)return fontPromise;
+  var ws=[400,500,600,700,800,900];
+  fontPromise=Promise.all(ws.map(function(w){
+    if(!document.fonts||!document.fonts.load)return Promise.resolve();
+    return document.fonts.load(w+' 32px Vazirmatn','ابجد ۰۱۲۳۴۵۶۷۸۹').catch(function(){});
+  })).then(function(){return document.fonts?document.fonts.ready:Promise.resolve()}).catch(function(){});
+  return fontPromise;
+}
+
+function bindInput(inp){
+  inp.addEventListener('input',function(){
+    var cursor=inp.selectionStart, old=inp.value;
+    var before=old.slice(0,cursor);
+    var digitsBefore=toEn(before).replace(/[^\d]/g,'').length;
+    var raw=toEn(old).replace(/[^\d]/g,'');
+    if(raw.length>12)raw=raw.slice(0,12);
+    raw=raw.replace(/^0+(?=\d)/,'');
+    inp.dataset.raw=raw===''?'0':String(parseInt(raw,10));
+    if(raw===''){inp.value='';return}
+    var fmt=toFa(withCommas(raw));
+    inp.value=fmt;
+    var nc=fmt.length;
+    if(digitsBefore===0){nc=0}
+    else{var c=0;for(var i=0;i<fmt.length;i++){if(/[۰-۹]/.test(fmt[i])){c++;if(c===digitsBefore){nc=i+1;break}}}}
+    inp.setSelectionRange(nc,nc);
+  });
+}
+var i1=$('i1'), i2=$('i2');
+bindInput(i1); bindInput(i2);
+
+function updateLive(inp,el){var raw=parseInt(inp.dataset.raw||'0',10);el.textContent=raw>0?humanMoney(effectiveToman(raw)):'';}
+i1.addEventListener('input',function(){updateLive(i1,$('l1'))});
+i2.addEventListener('input',function(){updateLive(i2,$('l2'))});
+[i1,i2].forEach(function(inp){inp.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();$('calc').click()}})});
+
+function compute(m1403,m1405){
+  var r1403=m1403/GOLD_1403;
+  var r1405=m1405/GOLD_1405;
+  var change=((r1405/r1403)-1)*100;
+  return {
+    change: change,
+    ahead: change >= 0,
+    dropPct: Math.min(100,Math.max(0,-change)),
+    gainPct: Math.max(0,change),
+    targetGold: m1403*(GOLD_1405/GOLD_1403)
+  };
+}
+
+function drawCard(canvas, r){
+  var W=540, H=960, DPR=2;
+  canvas.width=W*DPR; canvas.height=H*DPR;
+  var ctx=canvas.getContext('2d');
+  ctx.scale(DPR,DPR);
+
+  function rr(x,y,w,h,rad){
+    if(rad>h/2)rad=h/2; if(rad>w/2)rad=w/2;
+    ctx.beginPath();
+    ctx.moveTo(x+rad,y);
+    ctx.lineTo(x+w-rad,y); ctx.arcTo(x+w,y,x+w,y+rad,rad);
+    ctx.lineTo(x+w,y+h-rad); ctx.arcTo(x+w,y+h,x+w-rad,y+h,rad);
+    ctx.lineTo(x+rad,y+h); ctx.arcTo(x,y+h,x,y+h-rad,rad);
+    ctx.lineTo(x,y+rad); ctx.arcTo(x,y,x+rad,y,rad);
+    ctx.closePath();
+  }
+  function fillRR(x,y,w,h,rad,color){rr(x,y,w,h,rad);ctx.fillStyle=color;ctx.fill();}
+  function strokeRR(x,y,w,h,rad,color,lw){rr(x,y,w,h,rad);ctx.strokeStyle=color;ctx.lineWidth=lw;ctx.stroke();}
+  function shadowRR(x,y,w,h,rad,fill,shColor,shBlur,shY){
+    ctx.save();
+    ctx.shadowColor=shColor; ctx.shadowBlur=shBlur; ctx.shadowOffsetY=shY;
+    rr(x,y,w,h,rad); ctx.fillStyle=fill; ctx.fill();
+    ctx.restore();
+  }
+  function txt(str,x,y,font,color,align){
+    ctx.font=font; ctx.fillStyle=color;
+    ctx.textAlign=align||'center'; ctx.textBaseline='middle';
+    ctx.direction='rtl';
+    ctx.fillText(str,x,y);
+  }
+  function txtLTR(str,x,y,font,color,align){
+    ctx.font=font; ctx.fillStyle=color;
+    ctx.textAlign=align||'left'; ctx.textBaseline='middle';
+    ctx.direction='ltr';
+    ctx.fillText(str,x,y);
+  }
+  function measure(str,font){ctx.font=font;ctx.direction='rtl';return ctx.measureText(str).width;}
+  function measureLTR(str,font){ctx.font=font;ctx.direction='ltr';return ctx.measureText(str).width;}
+  function F(w,s){return w+' '+s+'px Vazirmatn, Tahoma, sans-serif'}
+  function grad(x1,y1,x2,y2,stops){var g=ctx.createLinearGradient(x1,y1,x2,y2);stops.forEach(function(s){g.addColorStop(s[0],s[1])});return g;}
+
+  /* 1. BACKGROUND */
+  ctx.fillStyle=grad(0,0,W,H,[[0,'#FBFAF6'],[0.55,'#F1EDE4'],[1,'#E9E4D7']]);
+  ctx.fillRect(0,0,W,H);
+
+  var rg1=ctx.createRadialGradient(W,0,0,W,0,430);
+  rg1.addColorStop(0,'rgba(184,147,47,0.14)'); rg1.addColorStop(1,'rgba(184,147,47,0)');
+  ctx.fillStyle=rg1; ctx.fillRect(0,0,W,H);
+
+  var rg2=ctx.createRadialGradient(0,H,0,0,H,480);
+  rg2.addColorStop(0,'rgba(37,99,235,0.09)'); rg2.addColorStop(1,'rgba(37,99,235,0)');
+  ctx.fillStyle=rg2; ctx.fillRect(0,0,W,H);
+
+  /* 2. TOP ACCENT */
+  ctx.fillStyle=grad(0,0,W,0,[[0,C.navy],[0.5,C.gold],[1,C.navy]]);
+  ctx.fillRect(0,0,W,6);
+
+  /* 3. HEADER — bilingual brand */
+  var headerY=118;
+  var brandFont=F(900,12.5);
+  var brandTxt='MORADI INVEST · مرادی اینوست';
+  var brandW=measureLTR(brandTxt,brandFont);
+  var sqSize=18, sqGap=8;
+  var sqX=504-brandW-sqGap-sqSize;
+  var sqY=headerY-sqSize/2;
+  fillRR(sqX,sqY,sqSize,sqSize,5, grad(sqX,sqY,sqX+sqSize,sqY+sqSize,[[0,C.goldLight],[0.55,C.gold],[1,'#9A7B20']]));
+  txtLTR(brandTxt,sqX+sqSize+sqGap,headerY,brandFont,C.navy,'left');
+  txt('۱۴۰۳ ← مهر ۱۴۰۵',36,headerY,F(800,12),C.navy,'left');
+
+  ctx.strokeStyle=C.border; ctx.lineWidth=1.5;
+  ctx.beginPath(); ctx.moveTo(36,headerY+26); ctx.lineTo(504,headerY+26); ctx.stroke();
+
+  /* 4. LEAD */
+  var leadFont=F(800,18);
+  var lead1, lead2;
+  if(r.ahead){
+    lead1='درآمد شما متناسب با';
+    lead2='تورم و طلا رشد کرده ✔';
+  } else {
+    lead1='برای اینکه از تورم و طلا عقب نیفتی،';
+    lead2='امروز باید اینقدر دربیاری:';
+  }
+  txt(lead1,270,178,leadFont,C.navy);
+  txt(lead2,270,208,leadFont,C.navy);
+
+  /* 5. HERO CARD */
+  var heroX=36, heroY=245, heroW=468, heroH=270, heroR=26;
+
+  var heroBg = r.ahead ? '#F3FAF6' : '#FDF6F6';
+  var heroBorder = r.ahead ? 'rgba(26,147,111,0.32)' : 'rgba(217,58,58,0.28)';
+
+  shadowRR(heroX,heroY,heroW,heroH,heroR,heroBg,'rgba(15,29,51,0.16)',36,8);
+
+  ctx.save();
+  rr(heroX,heroY,heroW,heroH,heroR); ctx.clip();
+  var hg1=ctx.createRadialGradient(heroX+heroW,heroY,0,heroX+heroW,heroY,220);
+  hg1.addColorStop(0, r.ahead?'rgba(26,147,111,0.10)':'rgba(217,58,58,0.09)');
+  hg1.addColorStop(1,'rgba(255,255,255,0)');
+  ctx.fillStyle=hg1; ctx.fillRect(heroX,heroY,heroW,heroH);
+  var hg2=ctx.createRadialGradient(heroX,heroY+heroH,0,heroX,heroY+heroH,220);
+  hg2.addColorStop(0, r.ahead?'rgba(184,147,47,0.10)':'rgba(37,99,235,0.07)');
+  hg2.addColorStop(1,'rgba(255,255,255,0)');
+  ctx.fillStyle=hg2; ctx.fillRect(heroX,heroY,heroW,heroH);
+  ctx.restore();
+
+  strokeRR(heroX,heroY,heroW,heroH,heroR,heroBorder,1.6);
+
+  var t=formatTarget(r.targetGold);
+  var numLen=t.num.replace(/[^۰-۹]/g,'').length;
+  var numSize;
+  if(numLen>=6)numSize=60;
+  else if(numLen===5)numSize=76;
+  else if(numLen===4)numSize=92;
+  else if(numLen===3)numSize=106;
+  else numSize=116;
+
+  var prefixFont=F(700,20);
+  var numFont=F(900,numSize);
+  var unitFont=F(900,19);
+
+  var prefixTxt='ماهی', unitTxt=t.unit, numTxt=t.num;
+  var pw=measure(prefixTxt,prefixFont);
+  var nw=measure(numTxt,numFont);
+  var uw=measure(unitTxt,unitFont);
+  var gap=12;
+  var totalW=pw+gap+nw+gap+uw;
+
+  var rowY=330;
+  var startX=270+totalW/2;
+  txt(prefixTxt,startX-pw/2,rowY+8,prefixFont,C.muted,'center');
+  startX-=pw+gap;
+  txt(numTxt,startX-nw/2,rowY,numFont,C.navy,'center');
+  startX-=nw+gap;
+  txt(unitTxt,startX-uw/2,rowY+8,unitFont,C.goldDeep,'center');
+
+  ctx.strokeStyle=grad(232,0,308,0,[[0,'rgba(184,147,47,0)'],[0.5,C.gold],[1,'rgba(184,147,47,0)']]);
+  ctx.lineWidth=2;
+  ctx.beginPath(); ctx.moveTo(232,378); ctx.lineTo(308,378); ctx.stroke();
+
+  var subTxt = r.ahead
+    ? 'همین حداقل، برای حفظ سطحِ ۱۴۰۳ لازم بود'
+    : 'تازه فقط برای اینکه تو همون سطحِ ۱۴۰۳ بمونی!';
+  var subFont=F(800,12.5);
+  var subW=measure(subTxt,subFont)+36;
+  var subH=30;
+  var subX=270-subW/2;
+  var subY=398;
+  var subBg = r.ahead ? 'rgba(26,147,111,0.13)' : 'rgba(217,58,58,0.13)';
+  var subBr = r.ahead ? 'rgba(26,147,111,0.30)' : 'rgba(217,58,58,0.26)';
+  var subTx = r.ahead ? C.success : C.danger;
+  fillRR(subX,subY,subW,subH,100,subBg);
+  strokeRR(subX,subY,subW,subH,100,subBr,1.4);
+  txt(subTxt,270,subY+subH/2,subFont,subTx,'center');
+
+  /* 6. DROP */
+  var dropLabelY=555;
+  var lab1='ارزش درآمدت نسبت به ';
+  var lab2='طلا';
+  var labFont=F(800,15);
+  var lab1W=measure(lab1,labFont);
+  var lab2W=measure(lab2,labFont);
+  var labTotal=lab1W+lab2W;
+  var labStartX=270+labTotal/2;
+  txt(lab1,labStartX-lab1W/2,dropLabelY,labFont,C.muted,'center');
+  txt(lab2,labStartX-lab1W-lab2W/2,dropLabelY,labFont,C.goldDeep,'center');
+
+  var dropPct = r.ahead ? Math.round(r.gainPct) : Math.round(r.dropPct);
+  var dropNumTxt=faNum(dropPct,0);
+  var dropSubTxt= r.ahead ? 'رشد کرده ▲' : 'دود شده ▼';
+
+  var dNumFont=F(900,30);
+  var dSubFont=F(900,14);
+  var dNumW=measure(dropNumTxt,dNumFont);
+  var dPctW=measure('٪',dSubFont);
+  var dSubW=measure(dropSubTxt,dSubFont);
+  var dGap=6;
+  var dTotal=dNumW+dGap+dPctW+dGap+dSubW;
+  var dPillW=dTotal+56;
+  var dPillH=52;
+  var dPillY=575;
+  var dPillX=270-dPillW/2;
+  var dBg = r.ahead ? C.successBg : C.dangerBg;
+  var dBr = r.ahead ? 'rgba(26,147,111,0.32)' : 'rgba(217,58,58,0.28)';
+  var dTx = r.ahead ? C.success : C.danger;
+
+  fillRR(dPillX,dPillY,dPillW,dPillH,100,dBg);
+  strokeRR(dPillX,dPillY,dPillW,dPillH,100,dBr,1.5);
+
+  var dx=dPillX+28;
+  ctx.textBaseline='middle'; ctx.direction='rtl'; ctx.textAlign='left';
+  ctx.font=dNumFont; ctx.fillStyle=dTx;
+  ctx.fillText(dropNumTxt,dx,dPillY+dPillH/2);
+  dx+=dNumW+dGap;
+  ctx.font=dSubFont;
+  ctx.fillText('٪',dx,dPillY+dPillH/2);
+  dx+=dPctW+dGap;
+  ctx.fillText(dropSubTxt,dx,dPillY+dPillH/2);
+
+  /* 7. PUNCHLINE */
+  var pY=650, pH=112;
+  shadowRR(36,pY,468,pH,18,C.white,'rgba(15,29,51,0.09)',18,3);
+  strokeRR(36,pY,468,pH,18,C.borderFaint,1);
+
+  ctx.save();
+  rr(36,pY,468,pH,18); ctx.clip();
+  ctx.fillStyle=grad(0,pY,0,pY+pH,[[0,C.gold],[1,C.blue]]);
+  ctx.fillRect(500,pY,4,pH);
+  ctx.restore();
+
+  if(r.ahead){
+    txt('تورم وحشتناکه؛ به سختی تونستم',270,pY+42,F(700,14),C.muted,'center');
+    txt('خودمو بهش برسونم.',270,pY+72,F(700,14),C.muted,'center');
+  } else {
+    txt('ظاهراً عدد حقوقم بالا رفته...',270,pY+32,F(800,15),C.navy,'center');
+    txt('ولی وقتی با طلا حساب می‌کنم،',270,pY+66,F(700,13.5),C.muted,'center');
+    txt('می‌بینم دارم درجا می‌زنم.',270,pY+92,F(700,13.5),C.muted,'center');
+  }
+
+  /* 8. FOOTER — bilingual brand pill */
+  ctx.strokeStyle=C.border; ctx.lineWidth=1.5;
+  ctx.beginPath(); ctx.moveTo(36,788); ctx.lineTo(504,788); ctx.stroke();
+
+  txt('برای حساب کردن عدد خودت سرچ کن:',270,810,F(700,12.5),C.muted,'center');
+
+  var bFont=F(900,14);
+  var bTxt='MoradiInvest · مرادی اینوست';
+  var bTW=measureLTR(bTxt,bFont);
+  var bPillW=bTW+42;
+  var bPillH=30;
+  var bPillX=270-bPillW/2;
+  var bPillY=828;
+  shadowRR(bPillX,bPillY,bPillW,bPillH,100,C.white,'rgba(184,147,47,0.30)',10,2);
+  strokeRR(bPillX,bPillY,bPillW,bPillH,100,C.gold,1.5);
+  txtLTR(bTxt,270,bPillY+bPillH/2,bFont,C.navy,'center');
+}
+
+function renderResult(){
+  var v1=effectiveToman(i1.dataset.raw), v2=effectiveToman(i2.dataset.raw);
+  var r=compute(v1,v2);
+  $('result').classList.add('show');
+  $('cardLoading').classList.remove('hide');
+  $('preview').hidden=true;
+  ensureFonts().then(function(){
+    drawCard($('cardCanvas'),r);
+    $('cardLoading').classList.add('hide');
+    $('result').scrollIntoView({behavior:'smooth',block:'start'});
+  });
+}
+
+$('calc').addEventListener('click',function(){
+  var v1=effectiveToman(i1.dataset.raw), v2=effectiveToman(i2.dataset.raw);
+  var err=false;
+  if(!v1){i1.classList.add('error');setTimeout(function(){i1.classList.remove('error')},1500);err=true}
+  if(!v2){i2.classList.add('error');setTimeout(function(){i2.classList.remove('error')},1500);err=true}
+  if(err)return;
+  renderResult();
+});
+
+function showToast(msg,isErr){
+  var t=$('toast'); t.textContent=msg; t.classList.toggle('error',!!isErr);
+  t.classList.add('show');
+  clearTimeout(showToast._t);
+  showToast._t=setTimeout(function(){t.classList.remove('show')},3500);
+}
+function showPreview(url){
+  $('previewImg').src=url;
+  $('preview').hidden=false;
+  setTimeout(function(){$('preview').scrollIntoView({behavior:'smooth',block:'center'})},120);
+}
+function fallbackSave(url){
+  if(!IN_APP){
+    var a=document.createElement('a');
+    a.download='moradiinvest.png'; a.href=url;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    showToast('✓ عکس دانلود شد، استوریش کن');
+  } else {
+    showToast('✓ عکس آماده است — انگشتت رو روش نگه دار');
+  }
+}
+
+$('shareBtn').addEventListener('click',function(){
+  var btn=this, orig=btn.innerHTML;
+  btn.disabled=true; btn.innerHTML='<span>در حال پردازش... ⏳</span>';
+  ensureFonts().then(function(){
+    var canvas=$('cardCanvas');
+    var v1=effectiveToman(i1.dataset.raw), v2=effectiveToman(i2.dataset.raw);
+    drawCard(canvas,compute(v1,v2));
+    var dataUrl=canvas.toDataURL('image/png');
+    showPreview(dataUrl);
+    canvas.toBlob(function(blob){
+      var file=new File([blob],'moradiinvest.png',{type:'image/png'});
+      if(navigator.canShare && navigator.canShare({files:[file]})){
+        navigator.share({
+          files:[file], text:'ارزش واقعی درآمدم رو حساب کردم', title:'ارزش حقوق'
+        }).then(function(){showToast('✓ رفت برای استوری')})
+          .catch(function(e){ if(e&&e.name==='AbortError')return; fallbackSave(dataUrl); })
+          .then(function(){btn.disabled=false; btn.innerHTML=orig});
+      } else {
+        fallbackSave(dataUrl);
+        btn.disabled=false; btn.innerHTML=orig;
+      }
+    },'image/png',1);
+  }).catch(function(e){
+    console.error(e);
+    showToast('⚠️ خطا در ساخت تصویر',true);
+    btn.disabled=false; btn.innerHTML=orig;
+  });
+});
+
+window.addEventListener('load',function(){ensureFonts()});
+})();
+</script>
+</body>
+</html>
